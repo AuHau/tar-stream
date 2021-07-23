@@ -1,5 +1,5 @@
-var util = require('util')
 var bl = require('bl')
+var inherits = require('inherits')
 var headers = require('./headers')
 
 var Writable = require('readable-stream').Writable
@@ -32,7 +32,7 @@ var Source = function (self, offset) {
   PassThrough.call(this, { autoDestroy: false })
 }
 
-util.inherits(Source, PassThrough)
+inherits(Source, PassThrough)
 
 Source.prototype.destroy = function (err) {
   this._parent.destroy(err)
@@ -186,7 +186,7 @@ var Extract = function (opts) {
   this._parse(512, onheader)
 }
 
-util.inherits(Extract, Writable)
+inherits(Extract, Writable)
 
 Extract.prototype.destroy = function (err) {
   if (this._destroyed) return
